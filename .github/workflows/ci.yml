@@ -175,6 +175,30 @@ jobs:
           go/hello.exe
           go/info.txt
 
+  build_haskell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: haskell/actions/setup@v2
+      - name: Build
+        shell: pwsh
+        run: |
+          cd haskell
+          ghc --version
+          ghc hello.hs
+          $info = @(
+            "LANGUAGE=Haskell"
+            "COMPILER=Glasgow Haskell Compiler $(ghc --version)"
+          )
+          $info | Out-File -FilePath info.txt -Encoding ascii
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: nodejs
+          path: |
+            nodejs/hello.exe
+            nodejs/info.txt
+
   build_java:
     runs-on: windows-latest
     steps:

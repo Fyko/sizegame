@@ -267,7 +267,7 @@ jobs:
         with:
           node-version: '20'
       - name: Build
-        shell: cmd
+        shell: pwsh
         run: |
           cd nodejs
           node --experimental-sea-config sea-config.json

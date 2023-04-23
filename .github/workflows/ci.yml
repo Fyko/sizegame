@@ -429,7 +429,8 @@ jobs:
           echo set title "Size of canonical Hello World"
           echo set key off
           echo set ylabel "Size ^(kB^)"
-          echo plot "plotdata.txt" using 2:xtic^(1^) with boxes
+          echo plot "plotdata.txt" using 2:xtic^(1^) with boxes,\
+          ""  using 0:($2+.1):(sprintf("%3.2f",$2)) with labels notitle
           )>plotcommands.txt
 
           echo *** COMMANDS ***

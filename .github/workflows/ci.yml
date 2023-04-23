@@ -260,7 +260,7 @@ jobs:
             nim/info.txt
 
   build_node:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -269,10 +269,10 @@ jobs:
       - name: Build
         shell: cmd
         run: |
-          cd node
-          node --experimental-sea-config .\sea-config.json
-          cp $(where.exe node) .\hello.exe
-          npx -y postject .\hello.exe NODE_SEA_BLOB .\hello.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2
+          cd nodejs
+          node --experimental-sea-config sea-config.json
+          cp (Get-Command node).Source hello.exe
+          npx -y postject hello.exe NODE_SEA_BLOB hello.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2
           node --version
           (
           echo LANGUAGE=Node
@@ -281,10 +281,10 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
-          name: node
+          name: nodejs
           path: |
-            node/hello.exe
-            node/info.txt
+            nodejs/hello.exe
+            nodejs/info.txt
             
   build_rust:
     runs-on: windows-latest

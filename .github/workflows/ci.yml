@@ -271,7 +271,7 @@ jobs:
         run: |
           cd node
           node --experimental-sea-config sea-config.json
-          cp $(where.exe node) hello
+          cp $(where.exe node) hello.exe
           npx -y postject hello.exe NODE_SEA_BLOB hello.blob --sentinel-fuse NODE_SEA_FUSE_fce680ab2cc467b6e072b8b5df1996b2
           node --version
           (

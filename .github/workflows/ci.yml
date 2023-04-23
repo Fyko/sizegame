@@ -188,16 +188,16 @@ jobs:
           ghc hello.hs
           $info = @(
             "LANGUAGE=Haskell"
-            "COMPILER=Glasgow Haskell Compiler $(ghc --version)"
+            "COMPILER=$(ghc --version)"
           )
           $info | Out-File -FilePath info.txt -Encoding ascii
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
-          name: nodejs
+          name: haskell
           path: |
-            nodejs/hello.exe
-            nodejs/info.txt
+            haskell/hello.exe
+            haskell/info.txt
 
   build_java:
     runs-on: windows-latest

@@ -177,6 +177,30 @@ jobs:
           dart/hello.exe
           dart/info.txt
 
+  build_elixir:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: erlef/setup-beam@v1
+    - name: Build
+      shell: pwsh
+      run: |
+        cd elixir
+        MIX_ENV=prod mix escript.build
+        elixir --version
+        $info = @(
+          "LANGUAGE=Elixir"
+          "COMPILER=$(elixir --version)"
+        )
+        $info | Out-File -FilePath info.txt -Encoding ascii
+    - name: Upload
+      uses: actions/upload-artifact@v3
+      with:
+        name: v
+        path: |
+          elixir/hello.exe
+          elixir/info.txt
+
   build_fsharp:
     runs-on: windows-latest
     steps:
